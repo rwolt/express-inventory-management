@@ -6,6 +6,7 @@ const ItemSchema = new Schema({
   name: { type: String, required: true, maxLength: 240 },
   description: { type: String, required: false, maxLength: 500 },
   category: { type: Schema.Types.ObjectId, ref: "Category", required: true },
+  unitOfMeasure: { type: String, enum: ["ea", "lb"] },
   price: { type: Number, required: true, min: 0 },
   quantityInStock: { type: Number, required: true, min: 0 },
 });
