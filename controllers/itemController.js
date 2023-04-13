@@ -11,7 +11,7 @@ exports.item_detail = async (req, res) => {
     err.status = 404;
     return next(err);
   }
-  res.render("item_detail", { item });
+  res.render("item_detail", { title: item.name, item });
 };
 
 exports.item_create_get = (req, res) => {
