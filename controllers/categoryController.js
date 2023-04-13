@@ -9,7 +9,7 @@ exports.index = (req, res) => {
 
 exports.category_list = async (req, res) => {
   const categories = await Category.find({});
-  res.render("category_list", { title: "Category List", categories });
+  res.render("category_list", { title: "All Categories", categories });
 };
 
 exports.category_detail = (req, res, next) => {

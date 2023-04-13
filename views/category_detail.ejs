@@ -1,10 +1,10 @@
 <div>
   <h1><%= category.name %></h1>
-  <ul>
-    <% for (let item of items) { %>
-    <li>
-      <a href="<%= item.url %>"><%= item.name %></a>
-    </li>
-    <% } %>
-  </ul>
+  <div class="grid">
+    <% items.forEach(item => { %> 
+    <div class="card">
+      <a href="<%= item.url %>"><%= item.name %></a></p>
+    </div>
+    <% }); %>
+  </div>
 </div>
