@@ -45,9 +45,21 @@ async function itemCreate(
   category,
   unitOfMeasure,
   price,
-  quantityInStock
+  leadTime,
+  safetyStock,
+  dailyAverageUsage,
+  quantityAvailable
 ) {
-  const itemDetail = { name, category, price, unitOfMeasure, quantityInStock };
+  const itemDetail = {
+    name,
+    category,
+    unitOfMeasure,
+    price,
+    leadTime,
+    safetyStock,
+    dailyAverageUsage,
+    quantityAvailable,
+  };
   if (description != false) itemDetail.description = description;
   const item = new Item(itemDetail);
   await item.save();
@@ -75,6 +87,9 @@ async function createItems() {
       categories[3],
       "ea",
       2.99,
+      1,
+      10,
+      45,
       50
     ),
     itemCreate(
@@ -83,6 +98,9 @@ async function createItems() {
       categories[3],
       "ea",
       3.99,
+      1,
+      5,
+      25,
       30
     ),
     itemCreate(
@@ -91,7 +109,10 @@ async function createItems() {
       categories[0],
       "ea",
       4.5,
-      100
+      7,
+      50,
+      200,
+      1700
     ),
     itemCreate(
       "Hot Pockets Applewood Bacon, Egg & Cheese Croissant Crust Frozen Sandwiches 2 pk",
@@ -99,7 +120,10 @@ async function createItems() {
       categories[0],
       "ea",
       4.49,
-      100
+      7,
+      15,
+      35,
+      300
     ),
     itemCreate(
       "Corner Market Cut Green Beans",
@@ -107,7 +131,10 @@ async function createItems() {
       categories[1],
       "ea",
       1.09,
-      200
+      3,
+      200,
+      350,
+      2300
     ),
     itemCreate(
       "Corner Market Chili Style Beans in Chili Gravy",
@@ -115,16 +142,32 @@ async function createItems() {
       categories[1],
       "ea",
       0.69,
-      200
+      3,
+      300,
+      400,
+      2600
     ),
-    itemCreate("Honeycrisp Apples", "", categories[2], "lb", 2.98, 500),
+    itemCreate(
+      "Honeycrisp Apples",
+      "",
+      categories[2],
+      "lb",
+      2.98,
+      5,
+      50,
+      450,
+      1400
+    ),
     itemCreate(
       "Red Bell Pepper",
       "Sweet, Mild Taste",
       categories[2],
       "ea",
       1.34,
-      500
+      5,
+      45,
+      220,
+      600
     ),
     itemCreate(
       "Corner Market 2% Milk",
@@ -132,6 +175,9 @@ async function createItems() {
       categories[4],
       "ea",
       4.19,
+      3,
+      60,
+      550,
       1000
     ),
     itemCreate(
@@ -140,6 +186,9 @@ async function createItems() {
       categories[4],
       "ea",
       4.79,
+      5,
+      25,
+      120,
       700
     ),
   ]);

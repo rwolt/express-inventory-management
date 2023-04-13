@@ -50,7 +50,7 @@ side ul {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, 250px);
 }
 
 .card {
@@ -60,4 +60,24 @@ side ul {
   justify-content: center;
   align-items: center;
   border: 1px solid black;
+  margin: 1rem;
+  position: relative;
+}
+
+.stock-count {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+}
+
+.text-danger {
+  color: red;
+}
+
+.text-warning {
+  color: orange;
+}
+
+.text-success {
+  color: green;
 }

@@ -4,6 +4,9 @@
     <% items.forEach(item => { %> 
     <div class="card">
       <a href="<%= item.url %>"><%= item.name %></a></p>
+      <span class="stock-count">
+      <%- include('./partials/stockCount', {item}) %>
+      </span>
     </div>
     <% }); %>
   </div>

@@ -1,7 +1,11 @@
 <div>
   <h1><%= item.name %></h1>
-  <p><%= item.description %></p>
   <p>Category: <%= item.category.name %></p>
   <p>Price: <%= item.price %> per <%= item.unitOfMeasure %></p>
-  <p>Quantity in Stock <%= item.quantityInStock %></p>
+  <p>Lead Time: <%= item.leadTime %> days</p>
+  <p>Safety Stock: <%= item.safetyStock %></p>
+  <p>Daily Average Usage: <%= item.dailyAverageUsage %></p>
+  <p>Reorder Point: <%= item.reorderPoint %></p>
+  <p>Quantity Available <%- include('./partials/stockCount', {item}) %></p>
+  <p><%= item.description %></p>
 </div>
