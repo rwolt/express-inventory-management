@@ -4,8 +4,14 @@ exports.item_list = (req, res) => {
   res.send("NOT IMPLEMENTED: item list");
 };
 
-exports.item_detail = (req, res) => {
-  res.send("NOT IMPLEMENTED: item detail");
+exports.item_detail = async (req, res) => {
+  const item = await Item.findById(req.params.id).populate("category");
+  if (item == null) {
+    const err = new Error("Item not found");
+    err.status = 404;
+    return next(err);
+  }
+  res.render("item_detail", { item });
 };
 
 exports.item_create_get = (req, res) => {

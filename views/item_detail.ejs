@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= item.name %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1><%= item.name %></h1>
+    <p><%= item.description %></p>
+    <p>Category: <%= item.category.name %></p>
+    <p>Price: <%= item.price %> per <%= item.unitOfMeasure %></p>
+    <p>Quantity in Stock <%= item.quantityInStock %></p>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= category.name %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1><%= category.name %></h1>
+    <ul>
+      <% for (let item of items) { %>
+      <li>
+        <a href="<%= item.url %>"><%= item.name %></a>
+      </li>
+      <% } %>
+    </ul>
+  </body>
+</html>

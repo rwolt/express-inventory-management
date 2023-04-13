@@ -72,7 +72,7 @@ async function createItems() {
     itemCreate(
       "French Loaf 2 Count",
       "8 oz Loaves",
-      categories[0],
+      categories[3],
       "ea",
       2.99,
       50
@@ -80,7 +80,7 @@ async function createItems() {
     itemCreate(
       "San Francisco Sour Dough Bread",
       "24 oz Loaf",
-      categories[0],
+      categories[3],
       "ea",
       3.99,
       30
@@ -88,7 +88,7 @@ async function createItems() {
     itemCreate(
       "Tombstone Original 5 Cheese Frozen Pizza",
       "Tombstone Five Cheese Frozen Pizza delivers full on flavor that's ideal for a quick lunch or easy dinner. ",
-      categories[1],
+      categories[0],
       "ea",
       4.5,
       100
@@ -96,7 +96,7 @@ async function createItems() {
     itemCreate(
       "Hot Pockets Applewood Bacon, Egg & Cheese Croissant Crust Frozen Sandwiches 2 pk",
       "Make breakfast time anytime with Hot Pockets Applewood Bacon, Egg and Cheese Croissant Crust Frozen Breakfast Sandwiches. Each scrumptious microwave sandwich is loaded with eggs, applewood bacon and reduced-fat cheddar cheese wrapped inside a delicious flaky croissant crust.",
-      categories[1],
+      categories[0],
       "ea",
       4.49,
       100
@@ -104,7 +104,7 @@ async function createItems() {
     itemCreate(
       "Corner Market Cut Green Beans",
       "SATISFACTION GUARANTEED OR PURCHASE PRICE REFUNDED FOR INFORMATION CALL 1-800-555-5555 - GUARANTEED QUALITY",
-      categories[2],
+      categories[1],
       "ea",
       1.09,
       200
@@ -112,16 +112,16 @@ async function createItems() {
     itemCreate(
       "Corner Market Chili Style Beans in Chili Gravy",
       "SATISFACTION GUARANTEED FOR INFORMATION CALL 1-800-555-5555 MICROWAVE: EMPTY CONTENTS INTO MICROWAVE-SAFE BOWL, COVER LOOSELY. MICROWAVE ON HIGH 3 MINUTES. STIR BEFORE SERVING. (ALL MICROWAVE OVENS VARY. TIMES GIVEN ARE APPROXIMATE.) STOVE TOP: EMPTY CONTENTS INTO SAUCEPAN. SIMMER OVER MEDIUM HEAT FOR 6 MINUTES OR UNTIL HOT, STIRRING OCCASIONALLY. REFRIGERATE UNUSED PORTION BEST IF USED BY DATE ON CAN END",
-      categories[2],
+      categories[1],
       "ea",
       0.69,
       200
     ),
-    itemCreate("Honeycrisp Apples", "", categories[3], "lb", 2.98, 500),
+    itemCreate("Honeycrisp Apples", "", categories[2], "lb", 2.98, 500),
     itemCreate(
       "Red Bell Pepper",
       "Sweet, Mild Taste",
-      categories[3],
+      categories[2],
       "ea",
       1.34,
       500
