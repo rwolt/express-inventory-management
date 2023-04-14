@@ -1,9 +1,5 @@
 <div>
   <h1><%= item.name %></h1>
-  <div>
-    <a href="/shop/item/<%= item._id %>/update">Update Item</a>
-    <a href="/shop/item/<%= item._id %>/delete">Delete Item</a>
-  </div>
   <p>Category: <%= item.category.name %></p>
   <p>Price: <%= item.price %> per <%= item.unitOfMeasure %></p>
   <p>Lead Time: <%= item.leadTime %> days</p>
@@ -12,4 +8,16 @@
   <p>Reorder Point: <%= item.reorderPoint %></p>
   <p>Quantity Available <%- include('./partials/stockCount', {item}) %></p>
   <p><%= item.description %></p>
+
+  <p>Do you really want to delete this Item?</p>
+
+  <form method="POST">
+    <input
+      type="hidden"
+      value="<%= item._id %>"
+      required="true"
+      name="itemId"
+    />
+    <input type="submit" value="Delete" />
+  </form>
 </div>

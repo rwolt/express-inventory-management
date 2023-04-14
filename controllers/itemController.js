@@ -126,10 +126,16 @@ exports.item_update_post = (req, res) => {
   res.send("NOT IMPLEMENTED: item update POST");
 };
 
-exports.item_delete_get = (req, res) => {
-  res.send("NOT IMPLEMENTED: item delete GET");
+exports.item_delete_get = async (req, res) => {
+  const item = await Item.findById(req.params.id);
+  res.render("item_delete", { item });
 };
 
 exports.item_delete_post = (req, res) => {
-  res.send("NOT IMPLEMENTED: item delete POST");
+  Item.findByIdAndRemove(req.body.itemId, (err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/shop/items");
+  });
 };

@@ -1,5 +1,9 @@
 <div>
   <h1><%= category.name %></h1>
+  <div>
+  <a href="/shop/category/<%= category._id %>/update">Update Category</a>
+  <a href="/shop/category/<%= category._id %>/delete">Delete Category</a>
+  </div>
   <div class="grid">
     <% items.forEach(item => { %> 
     <div class="card">
