@@ -47,17 +47,15 @@ exports.category_create_get = (req, res) => {
 
 exports.category_create_post = [
   // Validate and Sanitize fields
-  body("name")
+  body("name", "Name is required")
     .trim()
-    .isLength({ min: 0 })
-    .withMessage("Name is required")
+    .isLength({ min: 1, max: 100 })
     .escape(),
-  body("description").trim().escape(),
+  body("description").trim().isLength({ max: 100 }).escape(),
   // Process request after validation
   (req, res, next) => {
     // Extract the validation errors from a request
     const errors = validationResult(req);
-
     // Create category object with escaped and trimmed data
     const category = new Category({
       name: req.body.name,
@@ -75,6 +73,7 @@ exports.category_create_post = [
     }
 
     // If valid, save category and redirect to new category record
+
     category.save((err) => {
       if (err) {
         return next(err);
