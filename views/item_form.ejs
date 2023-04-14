@@ -3,11 +3,21 @@
   <form method="POST">
     <div>
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required />
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value="<%= locals.item ? locals.item.name : '' %> "
+      />
     </div>
     <div>
       <label for="description">Description:</label>
-      <input type="text" id="description" name="description" />
+      <input
+        type="text"
+        id="description"
+        name="description"
+        value="<%= locals.item ? locals.item.description : '' %> "
+      />
     </div>
     <div>
       <label for="category">Category:</label>
@@ -19,23 +29,35 @@
     </div>
     <div>
       <label for="unit-of-measure">Unit of Measure:</label>
-      <select id="unit-of-measure" name="unitOfMeasure">
+      <select
+        id="unit-of-measure"
+        name="unitOfMeasure"
+        value="<%= locals.item ? locals.item.unitOfMeasure : 'ea' %>"
+      >
         <option value="ea">ea</option>
         <option value="lb">lb</option>
       </select>
     </div>
     <div>
+      <label for="price">Price: </label>
       <input
         type="text"
         id="price"
         name="price"
-        pattern="^[0-9]+(\.[0-9]+)?$"
         title="Enter a price in decimal format"
+        value="<%= locals.item ? locals.item.price : '' %> "
       />
     </div>
     <div>
       <label for="lead-time">Lead Time (days): </label>
-      <input type="number" id="lead-time" name="leadTime" min="0" required />
+      <input
+        type="number"
+        id="lead-time"
+        name="leadTime"
+        min="0"
+        required
+        value="<%= locals.item ? locals.item.leadTime : '' %> "
+      />
     </div>
     <div>
       <label for="safety-stock">Safety Stock: </label>
@@ -45,6 +67,7 @@
         name="safetyStock"
         min="0"
         required
+        value="<%= locals.item ? locals.item.safetyStock : '' %> "
       />
     </div>
     <div>
@@ -55,6 +78,7 @@
         name="dailyAverageUsage"
         min="0"
         required
+        value="<%= locals.item ? locals.item.dailyAverageUsage : '' %>"
       />
     </div>
     <div>
@@ -65,8 +89,13 @@
         name="quantityAvailable"
         min="0"
         required
+        value="<%= locals.item ? locals.item.quantityAvailable : '' %>"
       />
     </div>
     <input type="submit" value="Add Item" />
   </form>
+
+  <% if (locals.errors) { %> <% for(let error of locals.errors) { %>
+  <p><%= error.msg %></p>
+  <% } %> <%} %>
 </div>

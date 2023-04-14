@@ -49,10 +49,10 @@ exports.item_create_post = [
     .isLength({ min: 1 })
     .toFloat()
     .escape(),
-  body("leadTime")
+  body("leadTime", "Lead time is required")
     .trim()
-    .isInt({ min: 0 })
-    .withMessage("Lead time must be an integer greater than 0")
+    .isLength({ min: 1 })
+    .toInt()
     .escape(),
   body("safetyStock", "Safety stock is required")
     .trim()
@@ -80,6 +80,7 @@ exports.item_create_post = [
       category: req.body.category,
       unitOfMeasure: req.body.unitOfMeasure,
       price: req.body.price,
+      leadTime: req.body.leadTime,
       safetyStock: req.body.safetyStock,
       dailyAverageUsage: req.body.dailyAverageUsage,
       quantityAvailable: req.body.quantityAvailable,
