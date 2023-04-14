@@ -1,3 +1,4 @@
+const { body, validationResult } = require("express-validator");
 const Category = require("../models/category");
 const Item = require("../models/item");
 
@@ -41,12 +42,47 @@ exports.category_detail = (req, res, next) => {
 };
 
 exports.category_create_get = (req, res) => {
-  res.send("NOT IMPLEMENTED: Category create GET");
+  res.render("category_form", { title: "Add new Category" });
 };
 
-exports.category_create_post = (req, res) => {
-  res.send("NOT IMPLEMENTED: Category create POST");
-};
+exports.category_create_post = [
+  // Validate and Sanitize fields
+  body("name")
+    .trim()
+    .isLength({ min: 0 })
+    .withMessage("Name is required")
+    .escape(),
+  body("description").trim().escape(),
+  // Process request after validation
+  (req, res, next) => {
+    // Extract the validation errors from a request
+    const errors = validationResult(req);
+
+    // Create category object with escaped and trimmed data
+    const category = new Category({
+      name: req.body.name,
+      description: req.body.description,
+    });
+
+    // If error, rerender form again with sanitized values/error messages
+    if (!errors.isEmpty()) {
+      res.render("category_form", {
+        title: "Add new Category",
+        category,
+        errors: errors.array(),
+      });
+      return;
+    }
+
+    // If valid, save category and redirect to new category record
+    category.save((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect(category.url);
+    });
+  },
+];
 
 exports.category_update_get = (req, res) => {
   res.send("NOT IMPLEMENTED: Category update GET");

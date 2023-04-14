@@ -1,3 +1,25 @@
 <div class="form-container">
-  <form></form>
+  <h1>Add new Category</h1>
+  <form method="POST">
+    <div>
+      <label for="name">Name: </label>
+      <input type="text" id="name" name="name" 
+      value="<%= locals.category ? locals.category.name : '' %>"/>
+    </div>
+    <div>
+      <label for="description">Description: </label>
+      <input type="text" id="description" name="description" 
+      value="<%= locals.category ? locals.category.description : '' %>"/>
+    </div>
+    <input type="submit" value="Add Category" />
+  </form>
+</div>
+
+  <% if (locals.errors) { %>
+   <ul> 
+   <% for (let error of locals.errors) { %>
+        <li><%= error.msg %></li>
+   <% } %>
+   </ul> 
+  <% } %>
 </div>
