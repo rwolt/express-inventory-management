@@ -4,8 +4,9 @@ const Category = require("../models/category");
 
 const async = require("async");
 
-exports.item_list = (req, res) => {
-  res.send("NOT IMPLEMENTED: item list");
+exports.item_list = async (req, res) => {
+  const items = await Item.find({});
+  res.render("item_list", { title: "All Items", items });
 };
 
 exports.item_detail = async (req, res) => {

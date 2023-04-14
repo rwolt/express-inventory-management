@@ -1,0 +1,10 @@
+<div>
+  <h1><%= title %></h1>
+  <div class="grid">
+    <% items.forEach(item => { %> 
+    <div class="card">
+      <a href="<%= item.url %>"><%= item.name %></a></p>
+    </div>
+    <% }); %>    
+  </div>
+</div>
