@@ -73,7 +73,6 @@ exports.item_create_post = [
   // Extract errors from the input
   (req, res, next) => {
     const errors = validationResult(req);
-    console.log(errors);
     // Create an item from using the validated and sanitized input
     const item = new Item({
       name: req.body.name,
@@ -88,6 +87,7 @@ exports.item_create_post = [
     });
     // If there are errors, rerender the form with the validated and sanitized body and the errors
     if (!errors.isEmpty()) {
+      console.log(item);
       async.parallel(
         {
           categories(callback) {
@@ -100,7 +100,15 @@ exports.item_create_post = [
           }
           res.render("item_form", {
             title: "Create new Item",
-            item,
+            name: item.name,
+            description: item.description,
+            category: item.category,
+            unitOfMeasure: item.unitOfMeasure,
+            price: item.price,
+            leadTime: item.leadTime,
+            safetyStock: item.safetyStock,
+            dailyAverageUsage: item.dailyAverageUsage,
+            quantityAvailable: item.quantityAvailable,
             categories: results.categories,
             errors: errors.array(),
           });

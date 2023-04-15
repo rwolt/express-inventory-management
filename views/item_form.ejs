@@ -7,7 +7,7 @@
         type="text"
         id="name"
         name="name"
-        value="<%= locals.item ? locals.item.name : '' %> "
+        value="<%= locals.name ? locals.name : '' %> "
       />
     </div>
     <div>
@@ -16,14 +16,19 @@
         type="text"
         id="description"
         name="description"
-        value="<%= locals.item ? locals.item.description : '' %> "
+        value="<%= locals.description ? locals.description : '' %> "
       />
     </div>
     <div>
       <label for="category">Category:</label>
       <select id="category" name="category">
         <% for (let category of categories) { %>
-        <option value="<%= category._id %>"><%= category.name %></option>
+        <option
+          value="<%= category._id %>"
+          <%= locals.category && locals.category._id.toString() == category._id.toString() ? 'selected' : '' %>
+        >
+          <%= category.name %>
+        </option>
         <% } %>
       </select>
     </div>
@@ -32,10 +37,12 @@
       <select
         id="unit-of-measure"
         name="unitOfMeasure"
-        value="<%= locals.item ? locals.item.unitOfMeasure : 'ea' %>"
+        value="<%= locals.unitOfMeasure ? locals.unitOfMeasure : 'ea' %>"
       >
-        <option value="ea">ea</option>
-        <option value="lb">lb</option>
+      <% const values = ['ea', 'lb'] %>
+      <% for (let value of values) { %>
+        <option value="<%= value %>" <%= locals.unitOfMeasure && locals.unitOfMeasure === value ? 'selected' : '' %>><%= value %></option>
+      <% } %>
       </select>
     </div>
     <div>
@@ -45,7 +52,7 @@
         id="price"
         name="price"
         title="Enter a price in decimal format"
-        value="<%= locals.item ? locals.item.price : '' %> "
+        value="<%= locals.price ? locals.price : '' %> "
       />
     </div>
     <div>
@@ -56,7 +63,7 @@
         name="leadTime"
         min="0"
         required
-        value="<%= locals.item ? locals.item.leadTime : '' %> "
+        value="<%= locals.leadTime ? locals.leadTime : '' %>"
       />
     </div>
     <div>
@@ -67,7 +74,7 @@
         name="safetyStock"
         min="0"
         required
-        value="<%= locals.item ? locals.item.safetyStock : '' %> "
+        value="<%= locals.safetyStock ? locals.safetyStock : '' %>"
       />
     </div>
     <div>
@@ -78,7 +85,7 @@
         name="dailyAverageUsage"
         min="0"
         required
-        value="<%= locals.item ? locals.item.dailyAverageUsage : '' %>"
+        value="<%= locals.dailyAverageUsage ? locals.dailyAverageUsage : '' %>"
       />
     </div>
     <div>
@@ -89,7 +96,7 @@
         name="quantityAvailable"
         min="0"
         required
-        value="<%= locals.item ? locals.item.quantityAvailable : '' %>"
+        value="<%= locals.quantityAvailable ? locals.quantityAvailable : '' %>"
       />
     </div>
     <input type="submit" value="Add Item" />
