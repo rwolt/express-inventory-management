@@ -9,8 +9,17 @@ exports.index = (req, res) => {
 };
 
 exports.category_list = async (req, res) => {
-  const categories = await Category.find({});
-  res.render("category_list", { title: "All Categories", categories });
+  await Category.find({}).exec((err, categories) => {
+    if (err) {
+      return next(err);
+    }
+    if (categories == null) {
+      const err = new Error("No categories found");
+      err.status = 404;
+      return next(err);
+    }
+    res.render("category_list", { title: "All Categories", categories });
+  });
 };
 
 exports.category_detail = (req, res, next) => {
@@ -66,6 +75,7 @@ exports.category_create_post = [
     if (!errors.isEmpty()) {
       res.render("category_form", {
         title: "Add new Category",
+        buttonText: "Add Category",
         category,
         errors: errors.array(),
       });
@@ -83,13 +93,64 @@ exports.category_create_post = [
   },
 ];
 
-exports.category_update_get = (req, res) => {
-  res.send("NOT IMPLEMENTED: Category update GET");
+exports.category_update_get = async (req, res) => {
+  await Category.findById(req.params.id).exec((err, category) => {
+    if (err) {
+      return next(err);
+    }
+    if (category == null) {
+      const err = new Error("Category not found");
+      err.status = 404;
+      return next(err);
+    }
+    res.render("category_form", {
+      title: "Update category",
+      buttonText: "Update Category",
+      category,
+    });
+  });
 };
 
-exports.category_update_post = (req, res) => {
-  res.send("NOT IMPLEMENTED: Category update POST");
-};
+exports.category_update_post = [
+  body("name", "Name is required")
+    .trim()
+    .isLength({ min: 1, max: 100 })
+    .escape(),
+  body("description").trim().isLength({ max: 100 }).escape(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    const category = new Category({
+      name: req.body.name,
+      description: req.body.description,
+      _id: req.params.id,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render("category_form", {
+        title: "Update Category",
+        buttonText: "Update Category",
+        category,
+        errors: errors.array(),
+      });
+      return;
+    }
+
+    // If valid, save category and redirect to new category record
+
+    Category.findByIdAndUpdate(
+      req.params.id,
+      category,
+      {},
+      (err, thecategory) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect(thecategory.url);
+      }
+    );
+  },
+];
 
 exports.category_delete_get = async (req, res) => {
   async.parallel(
