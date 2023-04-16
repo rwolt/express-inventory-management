@@ -8,7 +8,7 @@ exports.index = (req, res) => {
   res.render("index", { title: "Easy Stock" });
 };
 
-exports.category_list = async (req, res) => {
+exports.category_list = async (req, res, next) => {
   await Category.find({}).exec((err, categories) => {
     if (err) {
       return next(err);
@@ -93,7 +93,7 @@ exports.category_create_post = [
   },
 ];
 
-exports.category_update_get = async (req, res) => {
+exports.category_update_get = async (req, res, next) => {
   await Category.findById(req.params.id).exec((err, category) => {
     if (err) {
       return next(err);
@@ -152,7 +152,7 @@ exports.category_update_post = [
   },
 ];
 
-exports.category_delete_get = async (req, res) => {
+exports.category_delete_get = async (req, res, next) => {
   async.parallel(
     {
       category(callback) {
@@ -179,7 +179,7 @@ exports.category_delete_get = async (req, res) => {
   );
 };
 
-exports.category_delete_post = (req, res) => {
+exports.category_delete_post = (req, res, next) => {
   async.parallel(
     {
       category(callback) {

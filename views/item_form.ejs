@@ -1,5 +1,5 @@
 <div class="form-container">
-  <h1>Add new Item</h1>
+  <h1><%= locals.title ? locals.title : 'Item Form' %></h1>
   <form method="POST">
     <div>
       <label for="name">Name:</label>
@@ -100,7 +100,7 @@
         value="<%= locals.quantityAvailable ? locals.quantityAvailable : '' %>"
       />
     </div>
-    <input type="submit" value="Add Item" />
+    <input type="submit" value="<%= locals.buttonText ? locals.buttonText : 'Submit' %>" />
   </form>
 
   <% if (locals.errors) { %> <% for(let error of locals.errors) { %>
