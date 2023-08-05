@@ -19,33 +19,17 @@ exports.item_detail = async (req, res) => {
   res.render("item_detail", { title: item.name, item });
 };
 
-exports.item_create_get = (req, res) => {
-  async.parallel(
-    {
-      item(callback) {
-        Item.findById(req.params.id).exec(callback);
-      },
-      categories(callback) {
-        Category.find({}).exec(callback);
-      },
-    },
-    (err, results) => {
-      if (err) {
-        return next(err);
-      }
-      if (results.item == null) {
-        const err = new Error("Item not found");
-        req.status = 404;
-        return next(err);
-      }
-      res.render("item_form", {
-        title: "Create new Item",
-        item: results.item,
-        categories: results.categories,
-      });
-    }
-  );
-  return;
+exports.item_create_get = async (req, res) => {
+  const categories = await Category.find({});
+  if (categories === null) {
+    const err = new Error("No categories");
+    req.status = 404;
+    return next(err);
+  }
+  res.render("item_form", {
+    title: "Create new Item",
+    categories,
+  });
 };
 
 exports.item_create_post = [
