@@ -3,6 +3,20 @@ const Item = require("../models/item");
 const Category = require("../models/category");
 
 const async = require("async");
+const multer = require("multer");
+const path = require("path");
+
+// Configure multer disk storage engine
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
 
 exports.item_list = async (req, res) => {
   const items = await Item.find({});
@@ -33,6 +47,8 @@ exports.item_create_get = async (req, res) => {
 };
 
 exports.item_create_post = [
+  // Upload item image using multer
+  upload.single("item_image"),
   // Validate and Sanitize the request
   body("name", "Name is required").trim().isLength({ min: 1 }).escape(),
   body("description").trim().escape(),
@@ -65,6 +81,7 @@ exports.item_create_post = [
     .escape(),
   // Extract errors from the input
   (req, res, next) => {
+    console.log(req.body, req.file);
     const errors = validationResult(req);
     // Create an item from using the validated and sanitized input
     const item = new Item({
@@ -77,6 +94,7 @@ exports.item_create_post = [
       safetyStock: req.body.safetyStock,
       dailyAverageUsage: req.body.dailyAverageUsage,
       quantityAvailable: req.body.quantityAvailable,
+      image: req.file.filename,
     });
     // If there are errors, rerender the form with the validated and sanitized body and the errors
     if (!errors.isEmpty()) {
@@ -95,7 +113,7 @@ exports.item_create_post = [
             buttonText: "Add Item",
             name: item.name,
             description: item.description,
-            category: item.category,
+            category: item.category.name,
             unitOfMeasure: item.unitOfMeasure,
             price: item.price,
             leadTime: item.leadTime,

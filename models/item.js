@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 
 const ItemSchema = new Schema({
@@ -12,12 +11,17 @@ const ItemSchema = new Schema({
   safetyStock: { type: Number, required: true, min: 0 },
   dailyAverageUsage: { type: Number, required: true, min: 0 },
   quantityAvailable: { type: Number, required: true, min: 0 },
+  image: { type: String },
 });
 
 // Virtual for item URL
 
 ItemSchema.virtual("url").get(function () {
   return `/shop/item/${this._id}`;
+});
+
+ItemSchema.virtual("imageURL").get(function () {
+  return `/uploads/${this.image}`;
 });
 
 ItemSchema.virtual("reorderPoint").get(function () {

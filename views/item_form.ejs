@@ -1,6 +1,6 @@
 <div class="form-container">
   <h1><%= locals.title ? locals.title : 'Item Form' %></h1>
-  <form method="POST">
+  <form method="POST" enctype="multipart/form-data">
     <div>
       <label for="name">Name:</label>
       <input
@@ -99,6 +99,9 @@
         required
         value="<%= locals.quantityAvailable ? locals.quantityAvailable : '' %>"
       />
+    </div>
+    <div>
+      <input type="file" name="item_image" />
     </div>
     <input type="submit" value="<%= locals.buttonText ? locals.buttonText : 'Submit' %>" />
   </form>
