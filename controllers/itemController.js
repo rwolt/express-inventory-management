@@ -168,6 +168,7 @@ exports.item_update_get = async (req, res, next) => {
         safetyStock: results.item.safetyStock,
         dailyAverageUsage: results.item.dailyAverageUsage,
         quantityAvailable: results.item.quantityAvailable,
+        imageURL: results.item.imageURL,
         categories: results.categories,
       });
     }

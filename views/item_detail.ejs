@@ -1,15 +1,22 @@
-<div>
-  <h1><%= item.name %></h1>
-  <div>
-    <a href="/shop/item/<%= item._id %>/update">Update Item</a>
-    <a href="/shop/item/<%= item._id %>/delete">Delete Item</a>
+<div class="wrapper">
+  <div class="form-container">
+    <h1><%= item.name %></h1>
+    <div>
+      <a href="/shop/item/<%= item._id %>/update">Update Item</a>
+      <a href="/shop/item/<%= item._id %>/delete">Delete Item</a>
+    </div>
+    <p>Category: <%= item.category.name %></p>
+    <p>Price: <%= item.price %> per <%= item.unitOfMeasure %></p>
+    <p>Lead Time: <%= item.leadTime %> days</p>
+    <p>Safety Stock: <%= item.safetyStock %></p>
+    <p>Daily Average Usage: <%= item.dailyAverageUsage %></p>
+    <p>Reorder Point: <%= item.reorderPoint %></p>
+    <p>Quantity Available <%- include('./partials/stockCount', {item}) %></p>
+    <p><%= item.description %></p>
   </div>
-  <p>Category: <%= item.category.name %></p>
-  <p>Price: <%= item.price %> per <%= item.unitOfMeasure %></p>
-  <p>Lead Time: <%= item.leadTime %> days</p>
-  <p>Safety Stock: <%= item.safetyStock %></p>
-  <p>Daily Average Usage: <%= item.dailyAverageUsage %></p>
-  <p>Reorder Point: <%= item.reorderPoint %></p>
-  <p>Quantity Available <%- include('./partials/stockCount', {item}) %></p>
-  <p><%= item.description %></p>
+  <img
+    class="item-detail-image"
+    src="<%=item.imageURL %>"
+    alt="<%=item.name %>"
+  />
 </div>
