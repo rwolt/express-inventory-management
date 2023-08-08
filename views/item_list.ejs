@@ -3,7 +3,11 @@
   <div class="grid">
     <% items.forEach(item => { %> 
     <div class="card">
+    <img src="<%= item.imageURL %>" alt="<%= item.name %>" width="50%" height="50%">
       <a href="<%= item.url %>"><%= item.name %></a></p>
+      <span class="stock-count">
+      <%- include('./partials/stockCount', {item}) %>
+      </span>
     </div>
     <% }); %>    
   </div>

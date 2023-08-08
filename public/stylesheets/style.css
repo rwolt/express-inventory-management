@@ -34,9 +34,15 @@ header {
 footer {
   grid-area: footer;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-top: 1px solid black;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
 }
 
 main {
