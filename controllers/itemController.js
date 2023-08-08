@@ -3,8 +3,8 @@ const Item = require("../models/item");
 const Category = require("../models/category");
 
 const async = require("async");
-const multer = require("multer");
 const path = require("path");
+const multer = require("multer");
 
 // Configure multer disk storage engine
 const storage = multer.diskStorage({
@@ -168,7 +168,7 @@ exports.item_update_get = async (req, res, next) => {
         safetyStock: results.item.safetyStock,
         dailyAverageUsage: results.item.dailyAverageUsage,
         quantityAvailable: results.item.quantityAvailable,
-        imageURL: results.item.imageURL,
+        imageURL: results.item.image ? results.item.imageURL : "",
         categories: results.categories,
       });
     }
@@ -176,6 +176,15 @@ exports.item_update_get = async (req, res, next) => {
 };
 
 exports.item_update_post = [
+  async (req, res, next) => {
+    const item = await Item.findById(req.params.id);
+    const itemImage = item.image;
+    console.log(itemImage);
+    req.body.image = itemImage;
+    console.log(req.body);
+    next();
+  },
+  upload.single("item_image"),
   body("name", "Name is required").trim().isLength({ min: 1 }).escape(),
   body("description").trim().escape(),
   body("category", "Category is required").trim().isLength({ min: 1 }).escape(),
@@ -219,6 +228,8 @@ exports.item_update_post = [
       safetyStock: req.body.safetyStock,
       dailyAverageUsage: req.body.dailyAverageUsage,
       quantityAvailable: req.body.quantityAvailable,
+      categories: req.body.categories,
+      image: req.file ? req.file.filename : req.body.image,
       _id: req.params.id,
     });
     // If there are errors, rerender the form with the validated and sanitized body and the errors

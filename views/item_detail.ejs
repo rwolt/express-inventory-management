@@ -16,7 +16,7 @@
   </div>
   <img
     class="item-detail-image"
-    src="<%=item.imageURL %>"
-    alt="<%=item.name %>"
+    src="<%=item.image ? item.imageURL : '/images/supplies.png'%>"
+    alt="<%=item.image ? item.name : 'simple illustration of a shopping basket with supplies' %>"
   />
 </div>

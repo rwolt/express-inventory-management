@@ -8,7 +8,14 @@
     <title><%= typeof title != "undefined" ? title : "" %></title>
   </head>
   <body>
-    <header><h1>Easy Stock</h1></header>
+    <header>
+      <img
+        class="logo"
+        src="/images/hand-truck.png"
+        alt="illustration of a hand truck loaded with boxes"
+      />
+      <h1>Easy Stock</h1>
+    </header>
     <side> <%- include('../partials/sidebar') %> </side>
     <main><%- body %></main>
     <footer>
@@ -19,6 +26,11 @@
       >
         Logistics icons created by Muhammad Atif - Flaticon
       </a>
+      <a
+        href="https://www.flaticon.com/free-icons/supplies"
+        title="supplies icons"
+        >Supplies icons created by Smashicons - Flaticon</a
+      >
     </footer>
   </body>
 </html>
