@@ -94,7 +94,7 @@ exports.item_create_post = [
       safetyStock: req.body.safetyStock,
       dailyAverageUsage: req.body.dailyAverageUsage,
       quantityAvailable: req.body.quantityAvailable,
-      image: req.file.filename,
+      image: req.file ? req.file.filename : null,
     });
     // If there are errors, rerender the form with the validated and sanitized body and the errors
     if (!errors.isEmpty()) {
@@ -179,9 +179,7 @@ exports.item_update_post = [
   async (req, res, next) => {
     const item = await Item.findById(req.params.id);
     const itemImage = item.image;
-    console.log(itemImage);
     req.body.image = itemImage;
-    console.log(req.body);
     next();
   },
   upload.single("item_image"),

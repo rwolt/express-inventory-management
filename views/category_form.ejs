@@ -1,6 +1,6 @@
 <div class="form-container">
   <h1><%= locals.title ? locals.title : 'Category Form' %></h1>
-  <form method="POST">
+  <form method="POST" enctype="multipart/form-data">
     <div>
       <label for="name">Name: </label>
       <input type="text" id="name" name="name" 
@@ -12,6 +12,8 @@
       value="<%= locals.category ? locals.category.description : '' %>"/>
     </div>
     <input type="submit" value="<%= locals.buttonText ? locals.buttonText : 'Submit' %>" />
+    <label for="category-image">Upload Category Photo: </label>
+    <input type="file" name="category_image" />
   </form>
 </div>
 

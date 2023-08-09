@@ -3,6 +3,20 @@ const Category = require("../models/category");
 const Item = require("../models/item");
 
 const async = require("async");
+const path = require("path");
+const multer = require("multer");
+
+// Configure multer disk storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
 
 exports.index = (req, res) => {
   res.render("index", { title: "Easy Stock" });
@@ -55,6 +69,7 @@ exports.category_create_get = (req, res) => {
 };
 
 exports.category_create_post = [
+  upload.single("category_image"),
   // Validate and Sanitize fields
   body("name", "Name is required")
     .trim()
@@ -69,6 +84,7 @@ exports.category_create_post = [
     const category = new Category({
       name: req.body.name,
       description: req.body.description,
+      image: req.file ? req.file.filename : null,
     });
 
     // If error, rerender form again with sanitized values/error messages
@@ -112,6 +128,13 @@ exports.category_update_get = async (req, res, next) => {
 };
 
 exports.category_update_post = [
+  async (req, res, next) => {
+    const category = await Category.findById(req.params.id);
+    const categoryImage = category.image;
+    req.body.categoryImage = categoryImage;
+    next();
+  },
+  upload.single("category_image"),
   body("name", "Name is required")
     .trim()
     .isLength({ min: 1, max: 100 })
@@ -123,6 +146,7 @@ exports.category_update_post = [
     const category = new Category({
       name: req.body.name,
       description: req.body.description,
+      image: req.file ? req.file.filename : req.body.image,
       _id: req.params.id,
     });
 
@@ -138,17 +162,12 @@ exports.category_update_post = [
 
     // If valid, save category and redirect to new category record
 
-    Category.findByIdAndUpdate(
-      req.params.id,
-      category,
-      {},
-      (err, thecategory) => {
-        if (err) {
-          return next(err);
-        }
-        res.redirect(thecategory.url);
+    Category.findByIdAndUpdate(req.params.id, category, {}, (err, results) => {
+      if (err) {
+        return next(err);
       }
-    );
+      res.redirect(category.url);
+    });
   },
 ];
 

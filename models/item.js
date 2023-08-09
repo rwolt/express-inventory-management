@@ -21,7 +21,11 @@ ItemSchema.virtual("url").get(function () {
 });
 
 ItemSchema.virtual("imageURL").get(function () {
-  return `/uploads/${this.image}`;
+  if (this.image) {
+    return `/uploads/${this.image}`;
+  } else {
+    return `/images/supplies.png`;
+  }
 });
 
 ItemSchema.virtual("reorderPoint").get(function () {

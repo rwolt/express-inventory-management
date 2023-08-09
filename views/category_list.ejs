@@ -3,6 +3,7 @@
   <div class="grid">
     <% categories.forEach(category => { %> 
     <div class="card">
+    <img src="<%= category.imageURL %>" alt="<%= category.name %>" width="50%" height="50%">
       <a href="<%= category.url %>"><%= category.name %></a></p>
     </div>
     <% }); %>    
