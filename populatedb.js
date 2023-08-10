@@ -115,17 +115,6 @@ async function createItems() {
       1700
     ),
     itemCreate(
-      "Pillsbury Cinnamon Rolls 8ct",
-      "Slow down and savor the morning together with warm, freshly-baked Pillsbury Cinnamon Rolls. It’s easy to make any day cinnamony sweet with Pillsbury’s ready-to-bake dough and premade icing.",
-      categories[0],
-      "ea",
-      5.09,
-      4,
-      72,
-      25,
-      120
-    ),
-    itemCreate(
       "Hot Pockets Applewood Bacon, Egg & Cheese Croissant Crust Frozen Sandwiches 2 pk",
       "Make breakfast time anytime with Hot Pockets Applewood Bacon, Egg and Cheese Croissant Crust Frozen Breakfast Sandwiches. Each scrumptious microwave sandwich is loaded with eggs, applewood bacon and reduced-fat cheddar cheese wrapped inside a delicious flaky croissant crust.",
       categories[0],

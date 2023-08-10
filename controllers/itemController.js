@@ -276,11 +276,15 @@ exports.item_delete_get = async (req, res) => {
   res.render("item_delete", { item });
 };
 
-exports.item_delete_post = (req, res) => {
-  Item.findByIdAndRemove(req.body.itemId, (err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/shop/items");
-  });
-};
+exports.item_delete_post = [
+  upload.none(),
+  (req, res, next) => {
+    console.log("Hello controller");
+    Item.findByIdAndRemove(req.body.itemId, (err) => {
+      if (err) {
+        return next(err);
+      }
+      next();
+    });
+  },
+];

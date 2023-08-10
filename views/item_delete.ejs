@@ -1,4 +1,5 @@
 <div>
+  <script src="/scripts/passwordprompt.js" async></script>
   <h1><%= item.name %></h1>
   <p>Category: <%= item.category.name %></p>
   <p>Price: <%= item.price %> per <%= item.unitOfMeasure %></p>
@@ -11,13 +12,14 @@
 
   <p>Do you really want to delete this Item?</p>
 
-  <form method="POST">
+  <form id="delete-form" method="POST" enctype="multipart/form-data">
     <input
       type="hidden"
       value="<%= item._id %>"
       required="true"
       name="itemId"
     />
-    <input type="submit" value="Delete" />
+    <input id="password" type="password" hidden />
+    <input type="button" value="Delete" />
   </form>
 </div>
