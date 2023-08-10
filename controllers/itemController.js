@@ -1,6 +1,7 @@
 const { body, validationResult } = require("express-validator");
 const Item = require("../models/item");
 const Category = require("../models/category");
+const Password = require("../models/password");
 
 const async = require("async");
 const path = require("path");
@@ -23,7 +24,7 @@ exports.item_list = async (req, res) => {
   res.render("item_list", { title: "All Items", items });
 };
 
-exports.item_detail = async (req, res) => {
+exports.item_detail = async (req, res, next) => {
   const item = await Item.findById(req.params.id).populate("category");
   if (item == null) {
     const err = new Error("Item not found");
@@ -278,13 +279,25 @@ exports.item_delete_get = async (req, res) => {
 
 exports.item_delete_post = [
   upload.none(),
+  async (req, res, next) => {
+    const passwordDoc = await Password.findOne();
+    const password = passwordDoc.get("password");
+    console.log(password);
+    if (password !== req.body.adminPassword) {
+      console.log("incorrect password");
+      const err = new Error("Incorrect password");
+      err.status = 500;
+      return next(err);
+    }
+    next();
+  },
   (req, res, next) => {
-    console.log("Hello controller");
+    console.log("correct password");
     Item.findByIdAndRemove(req.body.itemId, (err) => {
       if (err) {
         return next(err);
       }
-      next();
+      res.redirect("/shop/items");
     });
   },
 ];

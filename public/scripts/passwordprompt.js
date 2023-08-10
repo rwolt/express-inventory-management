@@ -11,7 +11,9 @@ deleteForm.addEventListener("click", async (e) => {
   xhr.send(deleteFormData);
   xhr.onload = () => {
     let status = xhr.status;
-    if ((status = 200)) {
+    if (status == 500) {
+      alert("Incorrect password");
+    } else {
       window.location.href = "/shop/items";
     }
   };
