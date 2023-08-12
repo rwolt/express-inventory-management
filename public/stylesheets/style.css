@@ -60,6 +60,23 @@ side ul {
   list-style-type: none;
 }
 
+.nav {
+  font-size: 1.2rem;
+}
+
+.nav a {
+  text-decoration: none;
+}
+
+.nav li {
+  border-bottom: 1px solid black;
+  padding: 0.5rem 0;
+}
+
+.nav li:last-child {
+  border-bottom: none;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, 250px);
@@ -67,7 +84,7 @@ side ul {
 
 .card {
   width: 200px;
-  height: 200px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -77,22 +94,41 @@ side ul {
   position: relative;
 }
 
+.card a {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.card img {
+  width: 130px;
+  height: 130px;
+}
+
 .stock-count {
   position: absolute;
   bottom: 0.5rem;
   right: 0.5rem;
 }
 
+.item-quantity-text {
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
 .text-danger {
-  color: red;
+  background-color: red;
+  color: white;
 }
 
 .text-warning {
-  color: orange;
+  background-color: orange;
+  color: white;
 }
 
 .text-success {
-  color: green;
+  background-color: green;
+  color: white;
 }
 
 .wrapper {
@@ -110,3 +146,8 @@ side ul {
   height: 300px;
   margin-left: 1rem;
 }
+
+/* .card-title {
+  display: flex;
+  justify-content: space-between;
+} */

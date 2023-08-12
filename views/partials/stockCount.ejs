@@ -1,8 +1,14 @@
 <% if(item.quantityAvailable < item.safetyStock) { %>
-<span class="text-danger"><%= item.quantityAvailable %></span>
+<span class="text-danger item-quantity-text"
+  ><%= item.quantityAvailable %></span
+>
 <% } else if (item.quantityAvailable < (item.reorderPoint + (2 *
 item.dailyAverageUsage))) { %>
-<span class="text-warning"><%= item.quantityAvailable %></span>
+<span class="text-warning item-quantity-text"
+  ><%= item.quantityAvailable %></span
+>
 <% } else { %>
-<span class="text-success"><%= item.quantityAvailable %></span>
+<span class="text-success item-quantity-text"
+  ><%= item.quantityAvailable %></span
+>
 <% } %>

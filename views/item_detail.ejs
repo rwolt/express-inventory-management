@@ -11,7 +11,7 @@
     <p>Safety Stock: <%= item.safetyStock %></p>
     <p>Daily Average Usage: <%= item.dailyAverageUsage %></p>
     <p>Reorder Point: <%= item.reorderPoint %></p>
-    <p>Quantity Available <%- include('./partials/stockCount', {item}) %></p>
+    <p>Quantity Available <%= item.quantityAvailable %></p>
     <p><%= item.description %></p>
   </div>
   <img
