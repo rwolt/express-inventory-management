@@ -105,7 +105,10 @@
     <label htmlFor="item_image">Upload Item Photo: </label>
       <input type="file" name="item_image" value="<%= locals.image ? locals.image : '' %>" />
     </div>
+    <div class="submit-container">
     <input type="submit" value="<%= locals.buttonText ? locals.buttonText : 'Submit' %>" />
+
+    </div>
   </form>
 
   <% if (locals.errors) { %> <% for(let error of locals.errors) { %>

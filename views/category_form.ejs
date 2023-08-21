@@ -11,9 +11,13 @@
       <input type="text" id="description" name="description" 
       value="<%= locals.category ? locals.category.description : '' %>"/>
     </div>
-    <input type="submit" value="<%= locals.buttonText ? locals.buttonText : 'Submit' %>" />
+    <div>
     <label for="category-image">Upload Category Photo: </label>
     <input type="file" name="category_image" />
+    </div>
+    <div class="submit-container">
+    <input type="submit" value="<%= locals.buttonText ? locals.buttonText : 'Submit' %>" />
+    </div>
   </form>
 </div>
 

@@ -1,18 +1,41 @@
 <div class="wrapper">
   <div class="form-container">
     <h1><%= item.name %></h1>
-    <div>
-      <a href="/shop/item/<%= item._id %>/update">Update Item</a>
-      <a href="/shop/item/<%= item._id %>/delete">Delete Item</a>
+    <div class="description-container">
+      <div>
+        <a href="/shop/item/<%= item._id %>/update">Update Item</a>
+        <a href="/shop/item/<%= item._id %>/delete">Delete Item</a>
+      </div>
+      <p>
+        <span class="description-label">Category:</span> <%= item.category.name
+        %>
+      </p>
+      <p>
+        <span class="description-label">Price:</span> <%= item.price %> per <%=
+        item.unitOfMeasure %>
+      </p>
+      <p>
+        <span class="description-label">Lead Time:</span> <%= item.leadTime %>
+        days
+      </p>
+      <p>
+        <span class="description-label">Safety Stock: </span><%=
+        item.safetyStock %>
+      </p>
+      <p>
+        <span class="description-label">Daily Average Usage: </span><%=
+        item.dailyAverageUsage %>
+      </p>
+      <p>
+        <span class="description-label">Reorder Point: </span><%=
+        item.reorderPoint %>
+      </p>
+      <p>
+        <span class="description-label">Quantity Available: </span><%=
+        item.quantityAvailable %>
+      </p>
+      <p id="item-description"><%= item.description %></p>
     </div>
-    <p>Category: <%= item.category.name %></p>
-    <p>Price: <%= item.price %> per <%= item.unitOfMeasure %></p>
-    <p>Lead Time: <%= item.leadTime %> days</p>
-    <p>Safety Stock: <%= item.safetyStock %></p>
-    <p>Daily Average Usage: <%= item.dailyAverageUsage %></p>
-    <p>Reorder Point: <%= item.reorderPoint %></p>
-    <p>Quantity Available <%= item.quantityAvailable %></p>
-    <p><%= item.description %></p>
   </div>
   <img
     class="item-detail-image"

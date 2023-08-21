@@ -135,16 +135,69 @@ side ul {
   display: flex;
 }
 
-.form-container {
-  width: 400px;
-}
-
 .item-detail-image {
   border: 1px solid black;
   padding: 1rem;
   width: 300px;
   height: 300px;
   margin-left: 1rem;
+}
+
+.form-container {
+  width: 400px;
+}
+
+form,
+.description-container {
+  margin-top: 0.5rem;
+  position: relative;
+}
+
+form > div,
+.description-container > p {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 0.25rem 0;
+}
+
+label,
+.description-label {
+  width: 165px;
+}
+
+input {
+  height: 1.5rem;
+  flex: 1;
+}
+
+select {
+  height: 1.5rem;
+}
+
+input[type="file"] {
+  display: inline-block;
+}
+
+input[type="number"] {
+  flex: none;
+  width: 4rem;
+}
+
+.submit-container {
+  margin-top: 1rem;
+  justify-content: flex-end;
+}
+
+input[type="submit"] {
+  flex: none;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+  cursor: pointer;
+}
+
+p#item-description {
+  margin-top: 4rem;
 }
 
 /* .card-title {

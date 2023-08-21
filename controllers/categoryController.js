@@ -65,7 +65,10 @@ exports.category_detail = (req, res, next) => {
 };
 
 exports.category_create_get = (req, res) => {
-  res.render("category_form", { title: "Add new Category" });
+  res.render("category_form", {
+    title: "Add new Category",
+    buttonText: "Add Category",
+  });
 };
 
 exports.category_create_post = [

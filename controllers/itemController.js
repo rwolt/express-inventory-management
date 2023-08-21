@@ -43,6 +43,7 @@ exports.item_create_get = async (req, res) => {
   }
   res.render("item_form", {
     title: "Create new Item",
+    buttonText: "Create Item",
     categories,
   });
 };
