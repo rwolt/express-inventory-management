@@ -1,8 +1,10 @@
 const passwordProtectedForm = document.getElementById("protected-form");
-const passwordProtectedFormData = new FormData(passwordProtectedForm);
+const submitButton = document.getElementById("submit-button");
+const url = window.location.href;
 
-passwordProtectedForm.addEventListener("click", async (e) => {
+submitButton.addEventListener("click", async (e) => {
   const adminPassword = prompt("Please enter the admin password");
+  const passwordProtectedFormData = new FormData(passwordProtectedForm);
   passwordProtectedFormData.append("adminPassword", adminPassword);
 
   const xhr = new XMLHttpRequest();
@@ -16,7 +18,11 @@ passwordProtectedForm.addEventListener("click", async (e) => {
       window.location.reload();
     } else {
       xhr.abort();
-      window.location.href = "/shop/items";
+      if (url.toString().includes("item")) {
+        window.location.href = "/shop/items";
+      } else {
+        window.location.href = "/shop/categories";
+      }
     }
   };
 });

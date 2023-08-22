@@ -80,6 +80,18 @@ exports.category_create_post = [
     .isLength({ min: 1, max: 100 })
     .escape(),
   body("description").trim().isLength({ max: 100 }).escape(),
+  body("adminPassword").escape(),
+  async (req, res, next) => {
+    console.log(req.body);
+    const passwordDoc = await Password.findOne();
+    const password = passwordDoc.get("password");
+    if (password !== req.body.adminPassword) {
+      const err = new Error("Incorrect password");
+      err.status = 500;
+      return next(err);
+    }
+    next();
+  },
   // Process request after validation
   (req, res, next) => {
     // Extract the validation errors from a request
@@ -144,6 +156,29 @@ exports.category_update_post = [
     .isLength({ min: 1, max: 100 })
     .escape(),
   body("description").trim().isLength({ max: 100 }).escape(),
+  body("adminPassword").escape(),
+  async (req, res, next) => {
+    console.log(req.body);
+    const passwordDoc = await Password.findOne();
+    const password = passwordDoc.get("password");
+    if (password !== req.body.adminPassword) {
+      const err = new Error("Incorrect password");
+      err.status = 500;
+      return next(err);
+    }
+    next();
+  },
+  async (req, res, next) => {
+    console.log(req.body);
+    const passwordDoc = await Password.findOne();
+    const password = passwordDoc.get("password");
+    if (password !== req.body.adminPassword) {
+      const err = new Error("Incorrect password");
+      err.status = 500;
+      return next(err);
+    }
+    next();
+  },
   (req, res, next) => {
     const errors = validationResult(req);
 
@@ -204,6 +239,7 @@ exports.category_delete_get = async (req, res, next) => {
 
 exports.category_delete_post = [
   upload.none(),
+  body("adminPassword").escape(),
   async (req, res, next) => {
     console.log(req.body);
     const passwordDoc = await Password.findOne();

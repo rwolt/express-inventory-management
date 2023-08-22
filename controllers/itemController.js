@@ -81,6 +81,18 @@ exports.item_create_post = [
     .isLength({ min: 1 })
     .toInt()
     .escape(),
+  body("adminPassword").escape(),
+  async (req, res, next) => {
+    console.log(req.body);
+    const passwordDoc = await Password.findOne();
+    const password = passwordDoc.get("password");
+    if (password !== req.body.adminPassword) {
+      const err = new Error("Incorrect password");
+      err.status = 500;
+      return next(err);
+    }
+    next();
+  },
   // Extract errors from the input
   (req, res, next) => {
     console.log(req.body, req.file);
@@ -214,6 +226,18 @@ exports.item_update_post = [
     .isLength({ min: 1 })
     .toInt()
     .escape(),
+  body("adminPassword").escape(),
+  async (req, res, next) => {
+    console.log(req.body);
+    const passwordDoc = await Password.findOne();
+    const password = passwordDoc.get("password");
+    if (password !== req.body.adminPassword) {
+      const err = new Error("Incorrect password");
+      err.status = 500;
+      return next(err);
+    }
+    next();
+  },
 
   (req, res, next) => {
     const errors = validationResult(req);

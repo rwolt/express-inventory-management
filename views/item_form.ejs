@@ -1,7 +1,8 @@
 <div class="wrapper">
+<script src="/scripts/passwordprompt.js" async></script>
 <div class="form-container">
   <h1><%= locals.title ? locals.title : 'Item Form' %></h1>
-  <form method="POST" enctype="multipart/form-data">
+  <form method="POST" id="protected-form" enctype="multipart/form-data">
     <div>
       <label for="name">Name:</label>
       <input
@@ -106,7 +107,7 @@
       <input type="file" name="item_image" value="<%= locals.image ? locals.image : '' %>" />
     </div>
     <div class="submit-container">
-    <input type="submit" value="<%= locals.buttonText ? locals.buttonText : 'Submit' %>" />
+    <input type="button" id='submit-button' value="<%= locals.buttonText ? locals.buttonText : 'Submit' %>" />
 
     </div>
   </form>
