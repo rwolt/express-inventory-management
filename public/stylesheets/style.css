@@ -196,11 +196,7 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-p#item-description {
-  margin-top: 4rem;
+p#item-description,
+.verify-delete {
+  margin-top: 2rem;
 }
-
-/* .card-title {
-  display: flex;
-  justify-content: space-between;
-} */

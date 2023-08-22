@@ -1,25 +1,60 @@
-<div>
+<div class="wrapper">
   <script src="/scripts/passwordprompt.js" async></script>
-  <h1><%= item.name %></h1>
-  <p>Category: <%= item.category.name %></p>
-  <p>Price: <%= item.price %> per <%= item.unitOfMeasure %></p>
-  <p>Lead Time: <%= item.leadTime %> days</p>
-  <p>Safety Stock: <%= item.safetyStock %></p>
-  <p>Daily Average Usage: <%= item.dailyAverageUsage %></p>
-  <p>Reorder Point: <%= item.reorderPoint %></p>
-  <p>Quantity Available <%- include('./partials/stockCount', {item}) %></p>
-  <p><%= item.description %></p>
-
-  <p>Do you really want to delete this Item?</p>
-
-  <form id="delete-form" method="POST" enctype="multipart/form-data">
-    <input
-      type="hidden"
-      value="<%= item._id %>"
-      required="true"
-      name="itemId"
+    <div class="form-container">
+      <h1><%= item.name %></h1>
+      <div>
+      <div class="description-container">
+          <div>
+            <a href="/shop/item/<%= item._id %>/update">Update Item</a>
+            <a href="/shop/item/<%= item._id %>/delete">Delete Item</a>
+          </div>
+          <p>
+            <span class="description-label">Category:</span> <%=
+            item.category.name %>
+          </p>
+          <p>
+            <span class="description-label">Price:</span> <%= item.price %> per
+            <%= item.unitOfMeasure %>
+          </p>
+          <p>
+            <span class="description-label">Lead Time:</span> <%= item.leadTime
+            %> days
+          </p>
+          <p>
+            <span class="description-label">Safety Stock: </span><%=
+            item.safetyStock %>
+          </p>
+          <p>
+            <span class="description-label">Daily Average Usage: </span><%=
+            item.dailyAverageUsage %>
+          </p>
+          <p>
+            <span class="description-label">Reorder Point: </span><%=
+            item.reorderPoint %>
+          </p>
+          <p>
+            <span class="description-label">Quantity Available: </span><%=
+            item.quantityAvailable %>
+          </p>
+          <p id="item-description"><%= item.description %></p>
+        </div>
+      </div>
+      <p class="verify-delete">Do you really want to delete this Item?</p>
+      <form id="protected-form" method="POST" enctype="multipart/form-data">
+        <input
+          type="hidden"
+          value="<%= item._id %>"
+          required="true"
+          name="itemId"
+        />
+        <input id="password" type="password" hidden />
+        <input type="button" value="Delete" />
+      </form>
+    </div>
+    <img
+      class="item-detail-image"
+      src="<%=item.image ? item.imageURL : '/images/supplies.png'%>"
+      alt="<%=item.image ? item.name : 'simple illustration of a shopping basket with supplies' %>"
     />
-    <input id="password" type="password" hidden />
-    <input type="button" value="Delete" />
-  </form>
+  </div>
 </div>

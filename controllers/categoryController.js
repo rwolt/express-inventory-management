@@ -1,6 +1,7 @@
 const { body, validationResult } = require("express-validator");
 const Category = require("../models/category");
 const Item = require("../models/item");
+const Password = require("../models/password");
 
 const async = require("async");
 const path = require("path");
@@ -201,37 +202,25 @@ exports.category_delete_get = async (req, res, next) => {
   );
 };
 
-exports.category_delete_post = (req, res, next) => {
-  async.parallel(
-    {
-      category(callback) {
-        Category.findById(req.params.id).exec(callback);
-      },
-      items(callback) {
-        Item.find({ category: req.params.id }).exec(callback);
-      },
-    },
-    (err, results) => {
+exports.category_delete_post = [
+  upload.none(),
+  async (req, res, next) => {
+    console.log(req.body);
+    const passwordDoc = await Password.findOne();
+    const password = passwordDoc.get("password");
+    if (password !== req.body.adminPassword) {
+      const err = new Error("Incorrect password");
+      err.status = 500;
+      return next(err);
+    }
+    next();
+  },
+  (req, res, next) => {
+    Category.findByIdAndRemove(req.body.categoryId, (err) => {
       if (err) {
         return next(err);
       }
-      if (results.category == null) {
-        res.redirect("/shop/categories");
-      }
-      if (results.items.length > 0) {
-        res.render("category_delete", {
-          title: "Delete Category",
-          category: results.category,
-          items: results.items,
-        });
-      }
-
-      Category.findByIdAndRemove(req.body.categoryId, (err) => {
-        if (err) {
-          return next(err);
-        }
-        res.redirect("/shop/categories");
-      });
-    }
-  );
-};
+    });
+    next();
+  },
+];

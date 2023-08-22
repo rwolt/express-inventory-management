@@ -274,18 +274,17 @@ exports.item_update_post = [
 ];
 
 exports.item_delete_get = async (req, res) => {
-  const item = await Item.findById(req.params.id);
+  const item = await Item.findById(req.params.id).populate("category");
   res.render("item_delete", { item });
 };
 
 exports.item_delete_post = [
   upload.none(),
   async (req, res, next) => {
+    console.log(req.body);
     const passwordDoc = await Password.findOne();
     const password = passwordDoc.get("password");
-    console.log(password);
     if (password !== req.body.adminPassword) {
-      console.log("incorrect password");
       const err = new Error("Incorrect password");
       err.status = 500;
       return next(err);
@@ -293,12 +292,11 @@ exports.item_delete_post = [
     next();
   },
   (req, res, next) => {
-    console.log("correct password");
     Item.findByIdAndRemove(req.body.itemId, (err) => {
       if (err) {
         return next(err);
       }
-      res.redirect("/shop/items");
     });
+    next();
   },
 ];
