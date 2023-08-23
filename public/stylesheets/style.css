@@ -200,3 +200,21 @@ p#item-description,
 .verify-delete {
   margin-top: 2rem;
 }
+
+.modal {
+  width: 20%;
+  background-color: bisque;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 1rem;
+  position: absolute;
+  top: 20%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
