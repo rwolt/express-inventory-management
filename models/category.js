@@ -16,7 +16,7 @@ CategorySchema.virtual("url").get(function () {
 
 CategorySchema.virtual("imageURL").get(function () {
   if (this.image) {
-    return `/uploads/${this.image}`;
+    return `/uploads/images/${this.image}`;
   } else {
     return `/images/supplies.png`;
   }
