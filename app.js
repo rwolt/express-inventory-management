@@ -29,7 +29,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(process.env.RAILWAY_VOLUME_MOUNT_PATH));
+app.use(express.static("/uploads", { index: false }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(expressLayouts);
 
