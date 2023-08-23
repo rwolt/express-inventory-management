@@ -7,10 +7,11 @@ const async = require("async");
 const path = require("path");
 const multer = require("multer");
 
+const storageDirectory = process.env.RAILWAY_VOLUME_MOUNT_PATH;
 // Configure multer disk storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, process.env.RAILWAY_VOLUME_MOUNT_PATH);
+    cb(null, storageDirectory);
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
