@@ -69,13 +69,11 @@ async function itemCreate(
 
 async function createCategories() {
   console.log("Adding Categories");
-  await Promise.all([
-    categoryCreate("Bakery"),
-    categoryCreate("Frozen"),
-    categoryCreate("Pantry"),
-    categoryCreate("Fresh"),
-    categoryCreate("Beverages"),
-  ]);
+  await categoryCreate("Bakery");
+  await categoryCreate("Frozen");
+  await categoryCreate("Pantry");
+  await categoryCreate("Fresh");
+  await categoryCreate("Beverages");
 }
 
 async function createItems() {
@@ -84,7 +82,7 @@ async function createItems() {
     itemCreate(
       "French Loaf 2 Count",
       "8 oz Loaves",
-      categories[3],
+      categories[0],
       "ea",
       2.99,
       1,
@@ -95,7 +93,7 @@ async function createItems() {
     itemCreate(
       "San Francisco Sour Dough Bread",
       "24 oz Loaf",
-      categories[3],
+      categories[0],
       "ea",
       3.99,
       1,
@@ -106,7 +104,7 @@ async function createItems() {
     itemCreate(
       "Tombstone Original 5 Cheese Frozen Pizza",
       "Tombstone Five Cheese Frozen Pizza delivers full on flavor that's ideal for a quick lunch or easy dinner. ",
-      categories[0],
+      categories[1],
       "ea",
       4.5,
       7,
@@ -117,7 +115,7 @@ async function createItems() {
     itemCreate(
       "Hot Pockets Applewood Bacon, Egg & Cheese Croissant Crust Frozen Sandwiches 2 pk",
       "Make breakfast time anytime with Hot Pockets Applewood Bacon, Egg and Cheese Croissant Crust Frozen Breakfast Sandwiches. Each scrumptious microwave sandwich is loaded with eggs, applewood bacon and reduced-fat cheddar cheese wrapped inside a delicious flaky croissant crust.",
-      categories[0],
+      categories[1],
       "ea",
       4.49,
       7,
@@ -128,7 +126,7 @@ async function createItems() {
     itemCreate(
       "Corner Market Cut Green Beans",
       "SATISFACTION GUARANTEED OR PURCHASE PRICE REFUNDED FOR INFORMATION CALL 1-800-555-5555 - GUARANTEED QUALITY",
-      categories[1],
+      categories[2],
       "ea",
       1.09,
       3,
@@ -139,7 +137,7 @@ async function createItems() {
     itemCreate(
       "Corner Market Chili Style Beans in Chili Gravy",
       "SATISFACTION GUARANTEED FOR INFORMATION CALL 1-800-555-5555 MICROWAVE: EMPTY CONTENTS INTO MICROWAVE-SAFE BOWL, COVER LOOSELY. MICROWAVE ON HIGH 3 MINUTES. STIR BEFORE SERVING. (ALL MICROWAVE OVENS VARY. TIMES GIVEN ARE APPROXIMATE.) STOVE TOP: EMPTY CONTENTS INTO SAUCEPAN. SIMMER OVER MEDIUM HEAT FOR 6 MINUTES OR UNTIL HOT, STIRRING OCCASIONALLY. REFRIGERATE UNUSED PORTION BEST IF USED BY DATE ON CAN END",
-      categories[1],
+      categories[2],
       "ea",
       0.69,
       3,
@@ -150,7 +148,7 @@ async function createItems() {
     itemCreate(
       "Honeycrisp Apples",
       "",
-      categories[2],
+      categories[3],
       "lb",
       2.98,
       5,
@@ -161,7 +159,7 @@ async function createItems() {
     itemCreate(
       "Red Bell Pepper",
       "Sweet, Mild Taste",
-      categories[2],
+      categories[3],
       "ea",
       1.34,
       5,
