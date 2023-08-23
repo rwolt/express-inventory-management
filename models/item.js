@@ -22,7 +22,7 @@ ItemSchema.virtual("url").get(function () {
 
 ItemSchema.virtual("imageURL").get(function () {
   if (this.image) {
-    return `/uploads/${this.image}`;
+    return `${this.image}`;
   } else {
     return `/images/supplies.png`;
   }
