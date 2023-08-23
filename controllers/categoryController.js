@@ -10,7 +10,7 @@ const multer = require("multer");
 // Configure multer disk storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "/uploads");
+    cb(null, process.env.RAILWAY_VOLUME_MOUNT_PATH);
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
